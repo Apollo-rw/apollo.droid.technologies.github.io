@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apollo Fuze A9 Ultra | Apollo Brasil</title>
+    <style>
+        /* --- RESET & BASIC STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: #000; color: #fff; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- VARIAVEIS --- */
+        :root {
+            --primary-blue: #2189ff;
+            --dark-bg: #000;
+            --gray-bg: #121212;
+            --text-gray: #b0b0b0;
+            --nav-height: 60px;
+            --subnav-height: 50px;
+        }
+
+        /* --- NAVIGATION --- */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(0,0,0,0.95); border-bottom: 1px solid #333; }
+        .main-nav { display: flex; justify-content: space-between; align-items: center; padding: 0 24px; height: var(--nav-height); }
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+        .nav-links { display: flex; gap: 20px; font-size: 0.9rem; font-weight: 500; }
+        .nav-icons { display: flex; gap: 20px; }
+        
+        @media(max-width: 768px) {
+            .nav-links { display: none; }
+        }
+
+        /* --- SUB-NAV (Sticky Product Bar) --- */
+        .sub-nav {
+            position: sticky; top: var(--nav-height); z-index: 999;
+            background: rgba(18, 18, 18, 0.9); backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 24px; height: var(--subnav-height); border-bottom: 1px solid #333;
+        }
+        .product-title { font-weight: 700; font-size: 1.1rem; }
+        .buy-btn {
+            background-color: var(--primary-blue); color: white;
+            padding: 8px 24px; border-radius: 20px; font-weight: bold;
+            font-size: 0.9rem; transition: 0.3s;
+        }
+        .buy-btn:hover { background-color: #006ce6; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            background: radial-gradient(circle at center, #2a2a2a 0%, #000 70%);
+            padding-top: 100px;
+        }
+        .hero h1 { font-size: 4rem; margin-bottom: 10px; opacity: 0; animation: fadeIn Up 1s forwards; }
+        .hero h2 { font-size: 1.5rem; color: var(--text-gray); font-weight: 400; margin-bottom: 40px; opacity: 0; animation: fadeInUp 1s 0.3s forwards; }
+        .hero-img { width: 80%; max-width: 800px; border-radius: 30px; box-shadow: 0 0 50px rgba(33, 137, 255, 0.2); opacity: 0; animation: fadeInUp 1s 0.6s forwards; }
+
+        /* --- FEATURE SECTIONS (Scroll Reveal) --- */
+        .feature-section {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; padding: 60px 20px;
+            text-align: center; opacity: 0; transform: translateY(50px);
+            transition: all 1s ease;
+        }
+        .feature-section.visible { opacity: 1; transform: translateY(0); }
+        
+        .feature-tag { color: var(--primary-blue); font-weight: bold; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
+        .feature-title { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
+        .feature-desc { font-size: 1.2rem; color: var(--text-gray); max-width: 600px; margin-bottom: 40px; }
+        
+        .feature-img-container {
+            width: 100%; max-width: 1000px; height: 500px;
+            background-color: #222; border-radius: 30px; overflow: hidden;
+            position: relative; display: flex; align-items: center; justify-content: center;
+        }
+        
+        .bg-light { background-color: #f5f5f5; color: #000; }
+        .bg-light .feature-desc { color: #555; }
+
+        /* --- GRID SPECS --- */
+        .specs-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; padding: 60px 24px; max-width: 1200px; margin: 0 auto;
+        }
+        .spec-card {
+            background: #111; padding: 30px; border-radius: 20px; text-align: center;
+            border: 1px solid #333; transition: 0.3s;
+        }
+        .spec-card:hover { border-color: var(--primary-blue); transform: translateY(-5px); }
+        .spec-val { font-size: 2.5rem; font-weight: bold; display: block; margin-bottom: 10px; background: linear-gradient(90deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .spec-label { color: var(--text-gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- FOOTER --- */
+        footer { border-top: 1px solid #333; padding: 60px 24px; font-size: 0.8rem; color: #666; background: #050505; }
+        .footer-links { display: flex; gap: 30px; margin-bottom: 30px; flex-wrap: wrap; }
+        .disclaimer { margin-top: 20px; line-height: 1.5; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE TYPOGRAPHY --- */
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .feature-title { font-size: 2rem; }
+            .feature-img-container { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="main-nav">
+            <div class="logo">APOLLO</div>
+            <nav class="nav-links">
+                <a href="#">Mobile</a>
+                <a href="#">Apollo AI</a>
+                <a href="#">TV & Audio</a>
+                <a href="#">Eletrodomésticos</a>
+                <a href="#">Suporte</a>
+                <a href="#">Para Empresas</a>
+            </nav>
+            <div class="nav-icons">
+                <a href="#">🔍</a>
+                <a href="#">🛒</a>
+                <a href="#">👤</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-Header Sticky -->
+    <div class="sub-nav">
+        <div class="product-title">Apollo Fuze A9 Ultra</div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <span style="font-size: 0.9rem; font-weight: bold;">R$ 8.999,00</span>
+            <a href="#" class="buy-btn">Comprar Agora</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Apollo Fuze A9 Ultra</h1>
+        <h2>O futuro em suas mãos.</h2>
+        <!-- Placeholder Image created with CSS/SVG for demo purposes -->
+        <img src="https://placehold.co/800x500/111/white?text=Apollo+Fuze+A9+Ultra+Display" alt="Apollo Fuze A9 Ultra Frontal" class="hero-img">
+    </section>
+
+    <!-- Highlights Section 1: Display -->
+    <section class="feature-section">
+        <div class="feature-tag">Display</div>
+        <h3 class="feature-title">Imersão Total.<br>Crystal OLED 144Hz.</h3>
+        <p class="feature-desc">Veja cores que ganham vida com a nossa tela mais brilhante até hoje. 6.9 polegadas de pura perfeição visual.</p>
+        <div class="feature-img-container" style="background: linear-gradient(45deg, #000, #222);">
+            <img src="https://placehold.co/1000x500/black/2189ff?text=Crystal+OLED+Experience" alt="Tela Crystal OLED">
+        </div>
+    </section>
+
+    <!-- Highlights Section 2: Performance (Light Theme for Contrast) -->
+    <section class="feature-section bg-light">
+        <div class="feature-tag">Performance</div>
+        <h3 class="feature-title">Poder sem limites.<br>Chipset Quantum 9.</h3>
+        <p class="feature-desc">O processador mais rápido já colocado em um Apollo. Ray Tracing para jogos e NPU dedicada para IA.</p>
+        <div class="feature-img-container">
+            <img src="https://placehold.co/1000x500/white/000?text=Quantum+9+Gen+2+Chipset" alt="Processador">
+        </div>
+    </section>
+
+    <!-- Highlights Section 3: Camera -->
+    <section class="feature-section">
+        <div class="feature-tag">Câmera</div>
+        <h3 class="feature-title">200MP.<br>Capture o invisível.</h3>
+        <p class="feature-desc">Nightography Pro permite fotos claras mesmo na escuridão total. Zoom Espacial de 100x aproxima você da ação.</p>
+        <div class="feature-img-container" style="background: #050505;">
+            <img src="https://placehold.co/1000x500/111/red?text=Sistema+de+Camera+Tripla" alt="Câmeras">
+        </div>
+    </section>
+
+    <!-- Highlights Section 4: Durability -->
+    <section class="feature-section">
+        <div class="feature-tag">Durabilidade</div>
+        <h3 class="feature-title">Titânio Aeroespacial.<br>IP68.</h3>
+        <p class="feature-desc">Leve como uma pena, forte como o aço. Resistente à água e poeira para acompanhar sua jornada.</p>
+        <div class="feature-img-container" style="background-image: url('https://placehold.co/1000x500/333/666?text=Water+Resistance+IP68'); background-size: cover;">
+            <!-- Background Image Placeholder -->
+        </div>
+    </section>
+
+    <!-- Specs Grid -->
+    <div style="background-color: #000; padding-bottom: 50px;">
+        <h3 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">Especificações</h3>
+        <div class="specs-grid">
+            <div class="spec-card">
+                <span class="spec-val">6000mAh</span>
+                <span class="spec-label">Bateria de 2 dias</span>
+            </div>
+            <div class="spec-card">
+                <span class="spec-val">1 TB</span>
+                <span class="spec-label">Armazenamento</span>
+            </div>
+            <div class="spec-card">
+                <span class="spec-val">16 GB</span>
+                <span class="spec-label">Memória RAM</span>
+            </div>
+            <div class="spec-card">
+                <span class="spec-val">AI Ready</span>
+                <span class="spec-label">Apollo Intelligence</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buy Section Final -->
+    <section class="feature-section" style="min-height: 50vh; background: #111;">
+        <h3 class="feature-title">Troque o seu e economize.</h3>
+        <p class="feature-desc">Ganhe até R$ 2.000,00 de bônus na Troca Smart.</p>
+        <a href="#" class="buy-btn" style="padding: 15px 40px; font-size: 1.2rem;">Pré-venda Agora</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Quem Somos</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Termos de Uso</a>
+            <a href="#">Sustentabilidade</a>
+            <a href="#">Fale Conosco</a>
+        </div>
+        <p>Copyright © 1995-2026 Apollo Electronics Ltd. Todos os direitos reservados.</p>
+        <p class="disclaimer">
+            *Imagens simuladas para fins ilustrativos. A disponibilidade de cores e modelos pode variar conforme o país ou operadora.<br>
+            *A resistência à água IP68 é baseada em condições de teste para submersão em até 1,5 metro de água doce por até 30 minutos.
+        </p>
+    </footer>
+
+    <!-- JS for Scroll Animations -->
+    <script>
+        // Simple Intersection Observer to fade in elements on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
